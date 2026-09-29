@@ -29,7 +29,5 @@ HTML, CSS y JavaScript. El proyecto utiliza `localStorage` para conservar notici
 
 ## Cómo ejecutarlo
 
-Desde la carpeta del proyecto, inicia un servidor local:
+Desde la carpeta del proyecto, inicia el archivo index.html
 
-```bash
-python -m http.server 8000
