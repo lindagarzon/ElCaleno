@@ -26,8 +26,6 @@ HTML, CSS y JavaScript. El proyecto utiliza `localStorage` para conservar notici
 - `gestion.html`: gestión local de noticias.
 - `css/`: estilos.
 - `js/`: lógica de la aplicación.
-- `data/`: noticias iniciales en JSON.
-- `assets/`: ilustraciones e íconos.
 
 ## Cómo ejecutarlo
 
