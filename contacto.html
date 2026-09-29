@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto | El Caleño</title>
+  <meta name="description" content="Contáctanos en El Caleño. Estamos listos para escucharte." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="topbar">
+      <div class="container">
+        <span><i class="fas fa-map-marker-alt"></i> Cali, Valle del Cauca &nbsp;·&nbsp; <i class="fas fa-calendar"></i> Lunes, 28 de septiembre de 2026</span>
+        <div class="topbar-right">
+          <a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
+          <a href="crud.html"><i class="fas fa-edit"></i> Redacción</a>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar container" role="navigation" aria-label="Navegación principal">
+      <a href="index.html" class="navbar-brand" aria-label="El Caleño - Inicio">
+        <div class="brand-logo">EC</div>
+        <div class="brand-text">
+          <span class="brand-name">El <span>Caleño</span></span>
+          <span class="brand-slogan">Noticias del Valle del Cauca</span>
+        </div>
+      </a>
+      <button class="menu-toggle" aria-label="Menú" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+        <li><a href="noticias.html"><i class="fas fa-newspaper"></i> Noticias</a></li>
+        <li><a href="favoritos.html" class="nav-fav-btn">
+          <i class="fas fa-heart"></i> Favoritos
+          <span class="fav-count" style="display:none">0</span>
+        </a></li>
+        <li><a href="contacto.html" class="active"><i class="fas fa-envelope"></i> Contacto</a></li>
+        <li><a href="crud.html"><i class="fas fa-edit"></i> Redacción</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-hero" aria-label="Encabezado de contacto">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Miga de pan">
+        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+        <span>/</span>
+        <span>Contacto</span>
+      </nav>
+      <h1><i class="fas fa-envelope-open-text" style="color:var(--dorado)"></i> Contáctanos</h1>
+      <p>¿Tienes una historia, una queja o simplemente quieres saludarnos? Escríbenos.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+      <div class="contacto-layout">
+
+        <div class="contacto-form-card">
+          <h2><i class="fas fa-paper-plane" style="color:var(--rojo)"></i> Envíanos un mensaje</h2>
+          <p>Responderemos a tu mensaje en un plazo máximo de 24 horas hábiles.</p>
+
+          <form id="form-contacto" novalidate aria-label="Formulario de contacto">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre completo <span>*</span></label>
+                <input type="text" id="nombre" class="form-control" placeholder="Tu nombre completo" autocomplete="name" />
+                <span class="error-msg" id="error-nombre" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="email">Correo electrónico <span>*</span></label>
+                <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com" autocomplete="email" />
+                <span class="error-msg" id="error-email" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="telefono">Teléfono <span style="color:var(--gris-medio);font-weight:400">(opcional)</span></label>
+                <input type="tel" id="telefono" class="form-control" placeholder="+57 300 000 0000" autocomplete="tel" />
+                <span class="error-msg" id="error-telefono" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="tipo">Tipo de mensaje <span>*</span></label>
+                <select id="tipo" class="form-control filter-select" style="border-radius:10px;height:48px">
+                  <option value="">Selecciona una opción</option>
+                  <option value="informacion">Solicitud de información</option>
+                  <option value="noticia">Enviar una noticia</option>
+                  <option value="publicidad">Publicidad</option>
+                  <option value="queja">Queja o reclamo</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="asunto">Asunto <span>*</span></label>
+              <input type="text" id="asunto" class="form-control" placeholder="¿De qué trata tu mensaje?" />
+              <span class="error-msg" id="error-asunto" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="mensaje">Mensaje <span>*</span></label>
+              <textarea id="mensaje" class="form-control" rows="5"
+                        placeholder="Escribe tu mensaje aquí (mínimo 20 caracteres)..."></textarea>
+              <span class="error-msg" id="error-mensaje" role="alert"></span>
+            </div>
+
+            <div class="form-group" style="display:flex;align-items:flex-start;gap:10px">
+              <input type="checkbox" id="terminos" style="margin-top:4px;accent-color:var(--rojo);width:16px;height:16px" />
+              <label for="terminos" style="font-size:0.82rem;color:var(--gris);font-weight:400;cursor:pointer">
+                Acepto los <a href="#" style="color:var(--rojo)">términos y condiciones</a> y la
+                <a href="#" style="color:var(--rojo)">política de privacidad</a> de El Caleño.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%">
+              <i class="fas fa-paper-plane"></i> Enviar mensaje
+            </button>
+
+            <div class="form-success" id="form-success" role="alert" aria-live="polite">
+              <i class="fas fa-check-circle" style="font-size:1.5rem;color:#27ae60"></i>
+              <div>
+                <strong>¡Mensaje enviado con éxito!</strong><br>
+                <span style="font-size:0.85rem;font-weight:400">Te responderemos en menos de 24 horas hábiles.</span>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="contacto-info" role="complementary" aria-label="Información de contacto">
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <h4>Nuestra dirección</h4>
+              <p>Calle 10 # 4-47, Centro Histórico<br>Cali, Valle del Cauca, Colombia</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <h4>Teléfonos</h4>
+              <p>+57 (602) 880-5000<br>+57 310 555-7890 (WhatsApp)</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <h4>Correos electrónicos</h4>
+              <p>redaccion@elcaleno.co<br>publicidad@elcaleno.co</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <h4>Horario de atención</h4>
+              <p>Lunes a Viernes: 8:00 am – 6:00 pm<br>Sábados: 9:00 am – 1:00 pm</p>
+            </div>
+          </div>
+
+          <div style="background:var(--blanco);border-radius:var(--radio-lg);overflow:hidden;box-shadow:var(--sombra)">
+            <div style="background:linear-gradient(135deg,#2c3e50,#34495e);height:200px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:#fff">
+              <i class="fas fa-map-marked-alt" style="font-size:2.5rem;color:var(--dorado)"></i>
+              <span style="font-size:0.88rem;color:rgba(255,255,255,0.75)">Centro Histórico de Cali</span>
+              <a href="https://maps.google.com/?q=Cali,Valle+del+Cauca,Colombia" target="_blank" rel="noopener noreferrer"
+                 class="btn btn-gold btn-sm" style="margin-top:4px">
+                <i class="fas fa-external-link-alt"></i> Ver en Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div style="background:var(--blanco);border-radius:var(--radio-lg);padding:24px;box-shadow:var(--sombra)">
+            <h4 style="font-family:var(--fuente-titulo);margin-bottom:16px;color:var(--negro)">Síguenos en redes</h4>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <a href="#" class="btn btn-sm" style="background:#1877f2;color:#fff;border:none" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i> Facebook
+              </a>
+              <a href="#" class="btn btn-sm" style="background:#000;color:#fff;border:none" aria-label="Twitter/X">
+                <i class="fab fa-x-twitter"></i> Twitter
+              </a>
+              <a href="#" class="btn btn-sm" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;border:none" aria-label="Instagram">
+                <i class="fab fa-instagram"></i> Instagram
+              </a>
+              <a href="#" class="btn btn-sm" style="background:#25d366;color:#fff;border:none" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <section class="section section-alt" aria-label="Preguntas frecuentes">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">❓ FAQ</span>
+          <h2 class="section-title">Preguntas frecuentes</h2>
+          <div class="divider"></div>
+        </div>
+        <div style="max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:14px">
+          <details style="background:var(--blanco);border-radius:var(--radio);padding:18px 22px;box-shadow:var(--sombra);cursor:pointer">
+            <summary style="font-weight:700;color:var(--negro);list-style:none;display:flex;justify-content:space-between;align-items:center">
+              ¿Cómo puedo enviar una noticia para publicación?
+              <i class="fas fa-chevron-down" style="color:var(--rojo);font-size:0.85rem"></i>
+            </summary>
+            <p style="color:var(--gris);margin-top:12px;font-size:0.9rem;line-height:1.7">
+              Puedes enviar tu noticia usando el formulario de esta página, seleccionando "Enviar una noticia". También puedes ir directamente a la sección de <a href="crud.html" style="color:var(--rojo)">Redacción</a> y publicarla en la plataforma.
+            </p>
+          </details>
+          <details style="background:var(--blanco);border-radius:var(--radio);padding:18px 22px;box-shadow:var(--sombra);cursor:pointer">
+            <summary style="font-weight:700;color:var(--negro);list-style:none;display:flex;justify-content:space-between;align-items:center">
+              ¿Cuánto tiempo tardan en responder?
+              <i class="fas fa-chevron-down" style="color:var(--rojo);font-size:0.85rem"></i>
+            </summary>
+            <p style="color:var(--gris);margin-top:12px;font-size:0.9rem;line-height:1.7">
+              Respondemos todos los mensajes en un plazo máximo de 24 horas hábiles. Para asuntos urgentes puedes llamarnos directamente al +57 (602) 880-5000.
+            </p>
+          </details>
+          <details style="background:var(--blanco);border-radius:var(--radio);padding:18px 22px;box-shadow:var(--sombra);cursor:pointer">
+            <summary style="font-weight:700;color:var(--negro);list-style:none;display:flex;justify-content:space-between;align-items:center">
+              ¿Puedo pautar publicidad en El Caleño?
+              <i class="fas fa-chevron-down" style="color:var(--rojo);font-size:0.85rem"></i>
+            </summary>
+            <p style="color:var(--gris);margin-top:12px;font-size:0.9rem;line-height:1.7">
+              ¡Claro que sí! Escríbenos a publicidad@elcaleno.co o usa este formulario seleccionando "Publicidad" para conocer nuestras tarifas y opciones.
+            </p>
+          </details>
+          <details style="background:var(--blanco);border-radius:var(--radio);padding:18px 22px;box-shadow:var(--sombra);cursor:pointer">
+            <summary style="font-weight:700;color:var(--negro);list-style:none;display:flex;justify-content:space-between;align-items:center">
+              ¿Cómo funciona la sección de favoritos?
+              <i class="fas fa-chevron-down" style="color:var(--rojo);font-size:0.85rem"></i>
+            </summary>
+            <p style="color:var(--gris);margin-top:12px;font-size:0.9rem;line-height:1.7">
+              Al hacer clic en el ícono de corazón en cualquier noticia, esta se guarda en tu lista de favoritos usando localStorage de tu navegador. No necesitas crear cuenta y la lista persiste entre visitas en el mismo dispositivo.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="navbar-brand" style="margin-bottom:6px">
+              <div class="brand-logo">EC</div>
+              <div class="brand-text">
+                <span class="brand-name">El <span>Caleño</span></span>
+                <span class="brand-slogan">Noticias del Valle del Cauca</span>
+              </div>
+            </div>
+            <p>Tu periódico digital de confianza para mantenerte informado sobre lo que pasa en Cali y el Valle del Cauca.</p>
+            <div class="footer-social" aria-label="Redes sociales">
+              <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-btn" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Secciones</h4>
+            <ul>
+              <li><a href="index.html"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+              <li><a href="noticias.html"><i class="fas fa-chevron-right"></i> Noticias</a></li>
+              <li><a href="favoritos.html"><i class="fas fa-chevron-right"></i> Favoritos</a></li>
+              <li><a href="contacto.html"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+              <li><a href="crud.html"><i class="fas fa-chevron-right"></i> Redacción</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Categorías</h4>
+            <ul>
+              <li><a href="noticias.html?cat=Tecnología"><i class="fas fa-microchip"></i> Tecnología</a></li>
+              <li><a href="noticias.html?cat=Turismo"><i class="fas fa-map-marked-alt"></i> Turismo</a></li>
+              <li><a href="noticias.html?cat=Educación"><i class="fas fa-graduation-cap"></i> Educación</a></li>
+              <li><a href="noticias.html?cat=Comercio"><i class="fas fa-store"></i> Comercio</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contacto</h4>
+            <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>Calle 10 # 4-47, Cali</span></div>
+            <div class="footer-contact-item"><i class="fas fa-phone"></i><span>+57 (602) 880-5000</span></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>redaccion@elcaleno.co</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2026 El Caleño. Todos los derechos reservados.</span>
+        <span>Hecho con <i class="fas fa-heart" style="color:var(--rojo)"></i> en Cali, Colombia</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Volver arriba"><i class="fas fa-chevron-up"></i></button>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('form-contacto').addEventListener('submit', function(e) {
+      const chk = document.getElementById('terminos');
+      if (!chk.checked) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        mostrarToast('⚠️ Debes aceptar los términos y condiciones', 'warning');
+      }
+    }, true);
+  </script>
+</body>
+</html>

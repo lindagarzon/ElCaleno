@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redacción | El Caleño</title>
+  <meta name="description" content="Crea y gestiona noticias en El Caleño — panel de redacción." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="topbar">
+      <div class="container">
+        <span><i class="fas fa-map-marker-alt"></i> Cali, Valle del Cauca &nbsp;·&nbsp; <i class="fas fa-calendar"></i> Lunes, 28 de septiembre de 2026</span>
+        <div class="topbar-right">
+          <a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
+          <a href="crud.html"><i class="fas fa-edit"></i> Redacción</a>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar container" role="navigation" aria-label="Navegación principal">
+      <a href="index.html" class="navbar-brand" aria-label="El Caleño - Inicio">
+        <div class="brand-logo">EC</div>
+        <div class="brand-text">
+          <span class="brand-name">El <span>Caleño</span></span>
+          <span class="brand-slogan">Noticias del Valle del Cauca</span>
+        </div>
+      </a>
+      <button class="menu-toggle" aria-label="Menú" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+        <li><a href="noticias.html"><i class="fas fa-newspaper"></i> Noticias</a></li>
+        <li><a href="favoritos.html" class="nav-fav-btn">
+          <i class="fas fa-heart"></i> Favoritos
+          <span class="fav-count" style="display:none">0</span>
+        </a></li>
+        <li><a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+        <li><a href="crud.html" class="active"><i class="fas fa-edit"></i> Redacción</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-hero" aria-label="Encabezado de redacción">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Miga de pan">
+        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+        <span>/</span>
+        <span>Redacción</span>
+      </nav>
+      <h1><i class="fas fa-edit" style="color:var(--dorado)"></i> Panel de Redacción</h1>
+      <p>Crea nuevas noticias y gestiona el catálogo de El Caleño desde aquí.</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="crud-layout">
+
+      <div class="crud-form-card" role="form" aria-label="Formulario para crear noticia">
+        <h2><i class="fas fa-plus-circle"></i> Nueva noticia</h2>
+
+        <form id="form-crud" novalidate>
+          <div class="form-group">
+            <label for="crud-titulo">Título <span style="color:var(--rojo)">*</span></label>
+            <input type="text" id="crud-titulo" class="form-control"
+                   placeholder="Escribe el titular de la noticia" maxlength="120" />
+          </div>
+
+          <div class="form-group">
+            <label for="crud-categoria">Categoría <span style="color:var(--rojo)">*</span></label>
+            <select id="crud-categoria" class="form-control filter-select" style="height:48px;border-radius:10px">
+              <option value="">Selecciona una categoría</option>
+              <option value="Tecnología">💻 Tecnología</option>
+              <option value="Turismo">🗺️ Turismo</option>
+              <option value="Educación">🎓 Educación</option>
+              <option value="Comercio">🏪 Comercio</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="crud-autor">Autor <span style="color:var(--rojo)">*</span></label>
+            <input type="text" id="crud-autor" class="form-control" placeholder="Nombre del periodista" />
+          </div>
+
+          <div class="form-group">
+            <label for="crud-imagen">URL de imagen <span style="color:var(--gris-medio);font-weight:400">(opcional)</span></label>
+            <input type="url" id="crud-imagen" class="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
+            <span style="font-size:0.75rem;color:var(--gris-medio);margin-top:4px;display:block">
+              Si no ingresas imagen, se usará una por defecto.
+            </span>
+          </div>
+
+          <div id="img-preview-wrap" style="display:none;margin-bottom:16px">
+            <img id="img-preview" src="" alt="Vista previa"
+                 style="width:100%;height:140px;object-fit:cover;border-radius:var(--radio);border:2px solid var(--gris-claro)" />
+          </div>
+
+          <div class="form-group">
+            <label for="crud-descripcion">Descripción breve <span style="color:var(--rojo)">*</span></label>
+            <textarea id="crud-descripcion" class="form-control" rows="2"
+                      placeholder="Resumen corto (máx. 200 caracteres)" maxlength="200"></textarea>
+            <span id="desc-counter" style="font-size:0.72rem;color:var(--gris-medio);float:right">0/200</span>
+          </div>
+
+          <div class="form-group">
+            <label for="crud-contenido">Contenido completo <span style="color:var(--rojo)">*</span></label>
+            <textarea id="crud-contenido" class="form-control" rows="6"
+                      placeholder="Escribe el cuerpo completo de la noticia..."></textarea>
+          </div>
+
+          <div style="display:flex;gap:10px">
+            <button type="submit" class="btn btn-primary" style="flex:1">
+              <i class="fas fa-save"></i> Publicar noticia
+            </button>
+            <button type="reset" class="btn btn-ghost btn-sm" style="white-space:nowrap">
+              <i class="fas fa-undo"></i> Limpiar
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div>
+        <div class="crud-list-header">
+          <h2><i class="fas fa-list"></i> Noticias publicadas</h2>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span class="crud-count" id="crud-count">0</span>
+            <button id="btn-reset-data" class="btn btn-ghost btn-sm" title="Restablecer datos originales">
+              <i class="fas fa-sync-alt"></i> Restablecer
+            </button>
+          </div>
+        </div>
+
+        <div class="search-box" style="margin-bottom:18px">
+          <i class="fas fa-search"></i>
+          <input type="search" id="crud-search" placeholder="Buscar en la lista..." aria-label="Buscar noticias en la lista" />
+        </div>
+
+        <div id="crud-lista" aria-label="Lista de noticias para gestionar" aria-live="polite">
+          <div style="text-align:center;padding:40px 0">
+            <i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--rojo)"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="navbar-brand" style="margin-bottom:6px">
+              <div class="brand-logo">EC</div>
+              <div class="brand-text">
+                <span class="brand-name">El <span>Caleño</span></span>
+                <span class="brand-slogan">Noticias del Valle del Cauca</span>
+              </div>
+            </div>
+            <p>Tu periódico digital de confianza para mantenerte informado sobre lo que pasa en Cali y el Valle del Cauca.</p>
+            <div class="footer-social" aria-label="Redes sociales">
+              <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-btn" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Secciones</h4>
+            <ul>
+              <li><a href="index.html"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+              <li><a href="noticias.html"><i class="fas fa-chevron-right"></i> Noticias</a></li>
+              <li><a href="favoritos.html"><i class="fas fa-chevron-right"></i> Favoritos</a></li>
+              <li><a href="contacto.html"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+              <li><a href="crud.html"><i class="fas fa-chevron-right"></i> Redacción</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Categorías</h4>
+            <ul>
+              <li><a href="noticias.html?cat=Tecnología"><i class="fas fa-microchip"></i> Tecnología</a></li>
+              <li><a href="noticias.html?cat=Turismo"><i class="fas fa-map-marked-alt"></i> Turismo</a></li>
+              <li><a href="noticias.html?cat=Educación"><i class="fas fa-graduation-cap"></i> Educación</a></li>
+              <li><a href="noticias.html?cat=Comercio"><i class="fas fa-store"></i> Comercio</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contacto</h4>
+            <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>Calle 10 # 4-47, Cali</span></div>
+            <div class="footer-contact-item"><i class="fas fa-phone"></i><span>+57 (602) 880-5000</span></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>redaccion@elcaleno.co</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2026 El Caleño. Todos los derechos reservados.</span>
+        <span>Hecho con <i class="fas fa-heart" style="color:var(--rojo)"></i> en Cali, Colombia</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Volver arriba"><i class="fas fa-chevron-up"></i></button>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('crud-imagen').addEventListener('input', function() {
+      const url  = this.value.trim();
+      const wrap = document.getElementById('img-preview-wrap');
+      const img  = document.getElementById('img-preview');
+      if (url) {
+        img.src = url;
+        wrap.style.display = 'block';
+        img.onerror = () => { wrap.style.display = 'none'; };
+        img.onload  = () => { wrap.style.display = 'block'; };
+      } else {
+        wrap.style.display = 'none';
+      }
+    });
+
+    document.getElementById('crud-descripcion').addEventListener('input', function() {
+      document.getElementById('desc-counter').textContent = `${this.value.length}/200`;
+    });
+
+    document.getElementById('crud-search').addEventListener('input', function() {
+      const termino = this.value.toLowerCase();
+      document.querySelectorAll('.crud-item').forEach(item => {
+        const texto = item.querySelector('.crud-item-title').textContent.toLowerCase();
+        item.style.display = texto.includes(termino) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

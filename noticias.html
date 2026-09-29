@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noticias | El Caleño</title>
+  <meta name="description" content="Explora todas las noticias de tecnología, turismo, educación y comercio del Valle del Cauca." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="topbar">
+      <div class="container">
+        <span><i class="fas fa-map-marker-alt"></i> Cali, Valle del Cauca &nbsp;·&nbsp; <i class="fas fa-calendar"></i> Lunes, 28 de septiembre de 2026</span>
+        <div class="topbar-right">
+          <a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
+          <a href="crud.html"><i class="fas fa-edit"></i> Redacción</a>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar container" role="navigation" aria-label="Navegación principal">
+      <a href="index.html" class="navbar-brand" aria-label="El Caleño - Inicio">
+        <div class="brand-logo">EC</div>
+        <div class="brand-text">
+          <span class="brand-name">El <span>Caleño</span></span>
+          <span class="brand-slogan">Noticias del Valle del Cauca</span>
+        </div>
+      </a>
+      <button class="menu-toggle" aria-label="Menú" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+        <li><a href="noticias.html" class="active"><i class="fas fa-newspaper"></i> Noticias</a></li>
+        <li><a href="favoritos.html" class="nav-fav-btn">
+          <i class="fas fa-heart"></i> Favoritos
+          <span class="fav-count" style="display:none">0</span>
+        </a></li>
+        <li><a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+        <li><a href="crud.html"><i class="fas fa-edit"></i> Redacción</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-hero" aria-label="Encabezado de sección">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Miga de pan">
+        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+        <span>/</span>
+        <span>Noticias</span>
+      </nav>
+      <h1><i class="fas fa-newspaper" style="color:var(--dorado)"></i> Todas las noticias</h1>
+      <p>Explora nuestro catálogo completo de noticias del Valle del Cauca — tecnología, turismo, educación y comercio.</p>
+    </div>
+  </section>
+
+  <div class="filters-bar" role="search" aria-label="Filtros de búsqueda">
+    <div class="container filters-inner">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="search" id="search-input" placeholder="Buscar noticias, autores..." aria-label="Buscar noticias" />
+      </div>
+      <select id="cat-filter" class="filter-select" aria-label="Filtrar por categoría">
+        <option value="">Todas las categorías</option>
+        <option value="Tecnología">Tecnología</option>
+        <option value="Turismo">Turismo</option>
+        <option value="Educación">Educación</option>
+        <option value="Comercio">Comercio</option>
+      </select>
+      <select id="order-filter" class="filter-select" aria-label="Ordenar noticias">
+        <option value="reciente">Más recientes</option>
+        <option value="antiguo">Más antiguas</option>
+        <option value="az">A → Z</option>
+      </select>
+      <span class="results-count" id="results-count" aria-live="polite"></span>
+    </div>
+  </div>
+
+  <section class="section" aria-label="Listado de noticias">
+    <div class="container">
+      <div class="categories-row" role="list" aria-label="Filtros de categoría">
+        <button class="cat-pill active" data-cat="" role="listitem"><i class="fas fa-globe"></i> Todas</button>
+        <button class="cat-pill" data-cat="Tecnología" role="listitem"><i class="fas fa-microchip"></i> Tecnología</button>
+        <button class="cat-pill" data-cat="Turismo" role="listitem"><i class="fas fa-map-marked-alt"></i> Turismo</button>
+        <button class="cat-pill" data-cat="Educación" role="listitem"><i class="fas fa-graduation-cap"></i> Educación</button>
+        <button class="cat-pill" data-cat="Comercio" role="listitem"><i class="fas fa-store"></i> Comercio</button>
+      </div>
+
+      <div id="noticias-container" class="cards-grid" aria-label="Lista de noticias" aria-live="polite">
+        <div class="skeleton" style="height:380px;border-radius:18px"></div>
+        <div class="skeleton" style="height:380px;border-radius:18px"></div>
+        <div class="skeleton" style="height:380px;border-radius:18px"></div>
+        <div class="skeleton" style="height:380px;border-radius:18px"></div>
+        <div class="skeleton" style="height:380px;border-radius:18px"></div>
+        <div class="skeleton" style="height:380px;border-radius:18px"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-label="Llamado a la acción">
+    <div class="container">
+      <h2>¿Quieres publicar una noticia?</h2>
+      <p>Únete a nuestra comunidad de periodistas y comparte historias del Valle del Cauca.</p>
+      <div class="cta-actions">
+        <a href="crud.html" class="btn btn-gold btn-lg"><i class="fas fa-edit"></i> Ir a Redacción</a>
+        <a href="contacto.html" class="btn btn-outline btn-lg"><i class="fas fa-envelope"></i> Contáctanos</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="navbar-brand" style="margin-bottom:6px">
+              <div class="brand-logo">EC</div>
+              <div class="brand-text">
+                <span class="brand-name">El <span>Caleño</span></span>
+                <span class="brand-slogan">Noticias del Valle del Cauca</span>
+              </div>
+            </div>
+            <p>Tu periódico digital de confianza para mantenerte informado sobre lo que pasa en Cali y el Valle del Cauca.</p>
+            <div class="footer-social" aria-label="Redes sociales">
+              <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-btn" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Secciones</h4>
+            <ul>
+              <li><a href="index.html"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+              <li><a href="noticias.html"><i class="fas fa-chevron-right"></i> Noticias</a></li>
+              <li><a href="favoritos.html"><i class="fas fa-chevron-right"></i> Favoritos</a></li>
+              <li><a href="contacto.html"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+              <li><a href="crud.html"><i class="fas fa-chevron-right"></i> Redacción</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Categorías</h4>
+            <ul>
+              <li><a href="#" onclick="filtrarPorCat('Tecnología')"><i class="fas fa-microchip"></i> Tecnología</a></li>
+              <li><a href="#" onclick="filtrarPorCat('Turismo')"><i class="fas fa-map-marked-alt"></i> Turismo</a></li>
+              <li><a href="#" onclick="filtrarPorCat('Educación')"><i class="fas fa-graduation-cap"></i> Educación</a></li>
+              <li><a href="#" onclick="filtrarPorCat('Comercio')"><i class="fas fa-store"></i> Comercio</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contacto</h4>
+            <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>Calle 10 # 4-47, Cali</span></div>
+            <div class="footer-contact-item"><i class="fas fa-phone"></i><span>+57 (602) 880-5000</span></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>redaccion@elcaleno.co</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2026 El Caleño. Todos los derechos reservados.</span>
+        <span>Hecho con <i class="fas fa-heart" style="color:var(--rojo)"></i> en Cali, Colombia</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Volver arriba"><i class="fas fa-chevron-up"></i></button>
+
+  <script src="js/app.js"></script>
+  <script>
+    function filtrarPorCat(cat) {
+      const sel = document.getElementById('cat-filter');
+      if (sel) { sel.value = cat; sel.dispatchEvent(new Event('change')); }
+      window.scrollTo({ top: 300, behavior: 'smooth' });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('cat');
+      if (cat) {
+        setTimeout(() => {
+          const sel = document.getElementById('cat-filter');
+          if (sel) { sel.value = cat; sel.dispatchEvent(new Event('change')); }
+        }, 600);
+      }
+    });
+  </script>
+</body>
+</html>
