@@ -1,4 +1,4 @@
-# El Caleño — Plataforma web de noticias (Angular)
+# El Caleño - Plataforma web de noticias(Angular)
 
 Periódico digital del Valle del Cauca desarrollado para el módulo **Front End** del Politécnico Grancolombiano (Entrega 3 — Entrega final).
 Es la migración a **Angular 19** del prototipo en HTML, CSS y JavaScript de la Entrega 2.
