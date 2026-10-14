@@ -1,0 +1,72 @@
+<section class="page-hero" aria-label="Encabezado de sección">
+  <div class="container page-hero-content">
+    <nav class="breadcrumb" aria-label="Miga de pan">
+      <a routerLink="/"><i class="fas fa-home"></i> Inicio</a><span>/</span><span>Noticias</span>
+    </nav>
+    <h1><i class="fas fa-newspaper" style="color:var(--dorado)"></i> Todas las noticias</h1>
+    <p>Explora nuestro catálogo completo de noticias del Valle del Cauca — tecnología, turismo, educación y comercio.</p>
+  </div>
+</section>
+
+<!-- Barra de filtros: two-way binding con [(ngModel)] -->
+<div class="filters-bar" role="search">
+  <div class="container filters-inner">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="search" placeholder="Buscar noticias, autores..." aria-label="Buscar noticias"
+             [ngModel]="termino()" (ngModelChange)="termino.set($event)" />
+    </div>
+    <select class="filter-select" aria-label="Filtrar por categoría"
+            [ngModel]="categoria()" (ngModelChange)="categoria.set($event)">
+      <option value="">Todas las categorías</option>
+      @for (c of categorias; track c.nombre) { <option [value]="c.nombre">{{ c.nombre }}</option> }
+    </select>
+    <select class="filter-select" aria-label="Ordenar noticias"
+            [ngModel]="orden()" (ngModelChange)="orden.set($event)">
+      <option value="reciente">Más recientes</option>
+      <option value="antiguo">Más antiguas</option>
+      <option value="az">A → Z</option>
+    </select>
+    <span class="results-count" aria-live="polite">{{ filtradas().length }} noticia(s) encontrada(s)</span>
+  </div>
+</div>
+
+<section class="section" aria-label="Listado de noticias">
+  <div class="container">
+    <div class="categories-row" role="group" aria-label="Filtros rápidos">
+      <button class="cat-pill" [class.active]="categoria() === ''" (click)="categoria.set('')"><i class="fas fa-globe"></i> Todas</button>
+      @for (c of categorias; track c.nombre) {
+        <button class="cat-pill" [class.active]="categoria() === c.nombre" (click)="categoria.set(c.nombre)">
+          <i class="fas {{ c.icono }}"></i> {{ c.nombre }}</button>
+      }
+    </div>
+
+    @if (cargando()) {
+      <div class="cards-grid">
+        @for (i of [1,2,3,4,5,6]; track i) { <div class="skeleton" style="height:380px"></div> }
+      </div>
+    } @else if (filtradas().length) {
+      <div class="cards-grid">
+        @for (n of filtradas(); track n.id) { <app-news-card [noticia]="n" /> }
+      </div>
+    } @else {
+      <div class="empty-state">
+        <i class="fas fa-search"></i>
+        <h3>No encontramos noticias</h3>
+        <p>Prueba con otro término de búsqueda o categoría.</p>
+        <button class="btn btn-primary" (click)="limpiarFiltros()"><i class="fas fa-undo"></i> Limpiar filtros</button>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="cta-section" aria-label="Llamado a la acción">
+  <div class="container">
+    <h2>¿Quieres publicar una noticia?</h2>
+    <p>Únete a nuestra comunidad de periodistas y comparte historias del Valle del Cauca.</p>
+    <div class="cta-actions">
+      <a routerLink="/redaccion" class="btn btn-gold btn-lg"><i class="fas fa-edit"></i> Ir a Redacción</a>
+      <a routerLink="/contacto" class="btn btn-outline btn-lg"><i class="fas fa-envelope"></i> Contáctanos</a>
+    </div>
+  </div>
+</section>

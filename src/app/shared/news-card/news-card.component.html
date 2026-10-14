@@ -1,0 +1,29 @@
+<article class="news-card">
+  <div class="card-img-wrap">
+    <!-- Property binding: [src] y [alt] -->
+    <img [src]="noticia().imagen" [alt]="noticia().titulo" loading="lazy" (error)="onErrorImagen($event)" />
+    <span class="card-categoria" [class]="catClass()">{{ noticia().categoria }}</span>
+    <button class="card-fav-btn" [class.activo]="esFavorito()"
+            [attr.aria-label]="esFavorito() ? 'Quitar de favoritos' : 'Agregar a favoritos'"
+            [title]="esFavorito() ? 'Quitar de favoritos' : 'Agregar a favoritos'"
+            (click)="toggleFavorito($event)">
+      <i class="fa-heart" [class.fas]="esFavorito()" [class.far]="!esFavorito()"></i>
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="card-meta">
+      <span><i class="fas fa-calendar-alt"></i> {{ noticia().fecha | fechaLarga }}</span>
+    </div>
+    <h3 class="card-title">{{ noticia().titulo }}</h3>
+    <p class="card-desc">{{ noticia().descripcion }}</p>
+    <div class="card-footer">
+      <div class="card-autor">
+        <div class="avatar-mini">{{ noticia().autor | iniciales }}</div>
+        <span>{{ noticia().autor }}</span>
+      </div>
+      <a [routerLink]="['/noticia', noticia().id]" class="btn btn-primary btn-sm">
+        Ver más <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</article>

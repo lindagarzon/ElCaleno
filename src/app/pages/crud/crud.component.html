@@ -1,0 +1,113 @@
+<section class="page-hero" aria-label="Encabezado de redacción">
+  <div class="container page-hero-content">
+    <nav class="breadcrumb" aria-label="Miga de pan">
+      <a routerLink="/"><i class="fas fa-home"></i> Inicio</a><span>/</span><span>Redacción</span>
+    </nav>
+    <h1><i class="fas fa-edit" style="color:var(--dorado)"></i> Panel de Redacción</h1>
+    <p>Crea nuevas noticias y gestiona el catálogo de El Caleño desde aquí.</p>
+  </div>
+</section>
+
+<main class="container">
+  <div class="crud-layout">
+    <!-- ===== Formulario de creación (template-driven) ===== -->
+    <div class="crud-form-card">
+      <h2><i class="fas fa-plus-circle"></i> Nueva noticia</h2>
+      <form #f="ngForm" (ngSubmit)="publicar(f)" novalidate>
+        <div class="form-group">
+          <label for="crud-titulo">Título <span>*</span></label>
+          <input id="crud-titulo" name="titulo" class="form-control" maxlength="120" required minlength="5"
+                 placeholder="Escribe el titular de la noticia" [(ngModel)]="modelo.titulo" #titulo="ngModel"
+                 [class.error]="titulo.invalid && titulo.touched" />
+          @if (titulo.invalid && titulo.touched) { <span class="error-msg visible">El título debe tener al menos 5 caracteres.</span> }
+        </div>
+
+        <div class="form-group">
+          <label for="crud-categoria">Categoría <span>*</span></label>
+          <select id="crud-categoria" name="categoria" class="form-control" required
+                  [(ngModel)]="modelo.categoria" #cat="ngModel" [class.error]="cat.invalid && cat.touched">
+            <option value="">Selecciona una categoría</option>
+            @for (c of categorias; track c.nombre) { <option [value]="c.nombre">{{ c.nombre }}</option> }
+          </select>
+          @if (cat.invalid && cat.touched) { <span class="error-msg visible">Selecciona una categoría.</span> }
+        </div>
+
+        <div class="form-group">
+          <label for="crud-autor">Autor <span>*</span></label>
+          <input id="crud-autor" name="autor" class="form-control" required minlength="3"
+                 placeholder="Nombre del periodista" [(ngModel)]="modelo.autor" #autor="ngModel"
+                 [class.error]="autor.invalid && autor.touched" />
+          @if (autor.invalid && autor.touched) { <span class="error-msg visible">Indica el nombre del autor.</span> }
+        </div>
+
+        <div class="form-group">
+          <label for="crud-imagen">URL de imagen <span class="opcional">(opcional)</span></label>
+          <input id="crud-imagen" name="imagen" type="url" class="form-control" placeholder="https://ejemplo.com/imagen.jpg"
+                 [(ngModel)]="modelo.imagen" (ngModelChange)="previewOk.set(false)" />
+          <small class="hint">Si no ingresas imagen, se usará una por defecto según la categoría.</small>
+        </div>
+        @if (modelo.imagen) {
+          <img class="img-preview" [src]="modelo.imagen" alt="Vista previa" [hidden]="!previewOk()"
+               (load)="previewOk.set(true)" (error)="previewOk.set(false)" />
+        }
+
+        <div class="form-group">
+          <label for="crud-descripcion">Descripción breve <span>*</span></label>
+          <textarea id="crud-descripcion" name="descripcion" rows="2" class="form-control" maxlength="200" required minlength="10"
+                    placeholder="Resumen corto (máx. 200 caracteres)" [(ngModel)]="modelo.descripcion" #desc="ngModel"
+                    [class.error]="desc.invalid && desc.touched"></textarea>
+          <span class="char-counter">{{ modelo.descripcion.length }}/200</span>
+        </div>
+
+        <div class="form-group">
+          <label for="crud-contenido">Contenido completo <span>*</span></label>
+          <textarea id="crud-contenido" name="contenido" rows="6" class="form-control" required minlength="20"
+                    placeholder="Escribe el cuerpo completo de la noticia..." [(ngModel)]="modelo.contenido" #cont="ngModel"
+                    [class.error]="cont.invalid && cont.touched"></textarea>
+        </div>
+
+        <div style="display:flex;gap:10px">
+          <button type="submit" class="btn btn-primary" style="flex:1"><i class="fas fa-save"></i> Publicar noticia</button>
+          <button type="button" class="btn btn-ghost btn-sm" (click)="limpiar(f)"><i class="fas fa-undo"></i> Limpiar</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- ===== Listado para gestionar ===== -->
+    <div>
+      <div class="crud-list-header">
+        <h2><i class="fas fa-list"></i> Noticias publicadas</h2>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="crud-count">{{ total() }}</span>
+          <button class="btn btn-ghost btn-sm" (click)="restablecer()" title="Restablecer datos originales">
+            <i class="fas fa-sync-alt"></i> Restablecer</button>
+        </div>
+      </div>
+
+      <div class="search-box" style="margin-bottom:18px">
+        <i class="fas fa-search"></i>
+        <input type="search" placeholder="Buscar en la lista..." aria-label="Buscar noticias en la lista"
+               [ngModel]="busqueda()" (ngModelChange)="busqueda.set($event)" [ngModelOptions]="{standalone: true}" />
+      </div>
+
+      <div aria-live="polite">
+        @for (n of lista(); track n.id) {
+          <div class="crud-item">
+            <img [src]="n.imagen" [alt]="n.titulo" (error)="respaldo($event, n.categoria)" />
+            <div class="crud-item-info">
+              <span class="card-categoria static" [class]="claseCat(n.categoria)">{{ n.categoria }}</span>
+              <div class="crud-item-title">{{ n.titulo }}</div>
+              <small>{{ n.autor }} · {{ n.fecha | fechaLarga }}</small>
+            </div>
+            <div class="crud-item-actions">
+              <a [routerLink]="['/noticia', n.id]" class="btn btn-ghost btn-sm" title="Ver detalle"><i class="fas fa-eye"></i></a>
+              <button class="btn btn-danger-soft btn-sm" title="Eliminar" (click)="eliminar(n.id, n.titulo)"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+        } @empty {
+          <div class="empty-state small"><i class="fas fa-inbox"></i><p>No hay noticias que coincidan.</p></div>
+        }
+      </div>
+    </div>
+  </div>
+</main>

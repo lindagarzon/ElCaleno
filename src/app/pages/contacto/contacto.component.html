@@ -1,0 +1,130 @@
+<section class="page-hero" aria-label="Encabezado de contacto">
+  <div class="container page-hero-content">
+    <nav class="breadcrumb" aria-label="Miga de pan">
+      <a routerLink="/"><i class="fas fa-home"></i> Inicio</a><span>/</span><span>Contacto</span>
+    </nav>
+    <h1><i class="fas fa-envelope-open-text" style="color:var(--dorado)"></i> Contáctanos</h1>
+    <p>¿Tienes una historia, una queja o simplemente quieres saludarnos? Escríbenos.</p>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+    <div class="contacto-layout">
+      <div class="contacto-form-card">
+        <h2><i class="fas fa-paper-plane" style="color:var(--rojo)"></i> Envíanos un mensaje</h2>
+        <p>Responderemos a tu mensaje en un plazo máximo de 24 horas hábiles.</p>
+
+        <!-- Formulario reactivo: [formGroup] + formControlName + (ngSubmit) -->
+        <form [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre completo <span>*</span></label>
+              <input id="nombre" class="form-control" formControlName="nombre" placeholder="Tu nombre completo"
+                     [class.error]="invalido('nombre')" [class.success]="valido('nombre')" autocomplete="name" />
+              @if (invalido('nombre')) { <span class="error-msg visible">{{ error('nombre') }}</span> }
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico <span>*</span></label>
+              <input id="email" type="email" class="form-control" formControlName="email" placeholder="ejemplo@correo.com"
+                     [class.error]="invalido('email')" [class.success]="valido('email')" autocomplete="email" />
+              @if (invalido('email')) { <span class="error-msg visible">{{ error('email') }}</span> }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telefono">Teléfono <span class="opcional">(opcional)</span></label>
+              <input id="telefono" type="tel" class="form-control" formControlName="telefono" placeholder="+57 300 000 0000"
+                     [class.error]="invalido('telefono')" [class.success]="valido('telefono')" />
+              @if (invalido('telefono')) { <span class="error-msg visible">{{ error('telefono') }}</span> }
+            </div>
+            <div class="form-group">
+              <label for="tipo">Tipo de mensaje <span>*</span></label>
+              <select id="tipo" class="form-control" formControlName="tipo"
+                      [class.error]="invalido('tipo')" [class.success]="valido('tipo')">
+                <option value="">Selecciona una opción</option>
+                <option value="informacion">Solicitud de información</option>
+                <option value="noticia">Enviar una noticia</option>
+                <option value="publicidad">Publicidad</option>
+                <option value="queja">Queja o reclamo</option>
+                <option value="otro">Otro</option>
+              </select>
+              @if (invalido('tipo')) { <span class="error-msg visible">{{ error('tipo') }}</span> }
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="asunto">Asunto <span>*</span></label>
+            <input id="asunto" class="form-control" formControlName="asunto" placeholder="¿De qué trata tu mensaje?"
+                   [class.error]="invalido('asunto')" [class.success]="valido('asunto')" />
+            @if (invalido('asunto')) { <span class="error-msg visible">{{ error('asunto') }}</span> }
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Mensaje <span>*</span></label>
+            <textarea id="mensaje" rows="5" class="form-control" formControlName="mensaje"
+                      placeholder="Escribe tu mensaje aquí (mínimo 20 caracteres)..."
+                      [class.error]="invalido('mensaje')" [class.success]="valido('mensaje')"></textarea>
+            <span class="char-counter">{{ control('mensaje').value.length }} caracteres</span>
+            @if (invalido('mensaje')) { <span class="error-msg visible">{{ error('mensaje') }}</span> }
+          </div>
+
+          <div class="form-group form-check">
+            <input type="checkbox" id="terminos" formControlName="terminos" />
+            <label for="terminos">Acepto los términos y condiciones y la política de privacidad de El Caleño.</label>
+          </div>
+          @if (invalido('terminos')) { <span class="error-msg visible" style="margin-top:-8px;margin-bottom:12px">{{ error('terminos') }}</span> }
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%" [disabled]="enviando()">
+            @if (enviando()) { <i class="fas fa-spinner fa-spin"></i> Enviando... }
+            @else { <i class="fas fa-paper-plane"></i> Enviar mensaje }
+          </button>
+
+          @if (enviado()) {
+            <div class="form-success visible" role="alert">
+              <i class="fas fa-check-circle" style="font-size:1.5rem;color:#27ae60"></i>
+              <div><strong>¡Mensaje enviado con éxito!</strong><br>
+                <span style="font-size:0.85rem;font-weight:400">Te responderemos en menos de 24 horas hábiles.</span></div>
+            </div>
+          }
+        </form>
+      </div>
+
+      <div class="contacto-info" aria-label="Información de contacto">
+        <div class="info-card"><div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div><h4>Nuestra dirección</h4><p>Calle 10 # 4-47, Centro Histórico<br>Cali, Valle del Cauca, Colombia</p></div></div>
+        <div class="info-card"><div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+          <div><h4>Teléfonos</h4><p>+57 (602) 880-5000<br>+57 310 555-7890 (WhatsApp)</p></div></div>
+        <div class="info-card"><div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div><h4>Correos electrónicos</h4><p>redaccion&#64;elcaleno.co<br>publicidad&#64;elcaleno.co</p></div></div>
+        <div class="info-card"><div class="info-icon"><i class="fas fa-clock"></i></div>
+          <div><h4>Horario de atención</h4><p>Lunes a viernes: 8:00 am – 6:00 pm<br>Sábados: 9:00 am – 1:00 pm</p></div></div>
+        <div class="map-card">
+          <i class="fas fa-map-marked-alt"></i>
+          <span>Centro Histórico de Cali</span>
+          <a href="https://maps.google.com/?q=Cali,Valle+del+Cauca,Colombia" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-sm">
+            <i class="fas fa-external-link-alt"></i> Ver en Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section-alt" aria-label="Preguntas frecuentes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">❓ FAQ</span>
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="faq-list">
+        @for (f of faqs; track f.p) {
+          <details class="faq-item">
+            <summary>{{ f.p }} <i class="fas fa-chevron-down"></i></summary>
+            <p>{{ f.r }}</p>
+          </details>
+        }
+      </div>
+    </div>
+  </section>
+</main>

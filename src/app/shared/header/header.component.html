@@ -1,0 +1,58 @@
+<header class="header">
+  <!-- Topbar informativa -->
+  <div class="topbar">
+    <div class="container">
+      <span><i class="fas fa-map-marker-alt"></i> Cali, Valle del Cauca &nbsp;·&nbsp;
+        <i class="fas fa-calendar"></i> {{ fechaHoy }}</span>
+      <div class="topbar-right">
+        <a routerLink="/contacto"><i class="fas fa-envelope"></i> Contacto</a>
+        <a routerLink="/redaccion"><i class="fas fa-edit"></i> Redacción</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de navegación principal -->
+  <nav class="navbar container" aria-label="Navegación principal">
+    <a routerLink="/" class="navbar-brand" aria-label="El Caleño - Inicio" (click)="cerrarMenu()">
+      <div class="brand-logo">EC</div>
+      <div class="brand-text">
+        <span class="brand-name">El <span>Caleño</span></span>
+        <span class="brand-slogan">Noticias del Valle del Cauca</span>
+      </div>
+    </a>
+
+    <!-- Event binding (click) + property binding [attr.aria-expanded] -->
+    <button class="menu-toggle" aria-label="Menú" [attr.aria-expanded]="menuAbierto()" (click)="alternarMenu()">
+      <i class="fas" [class.fa-bars]="!menuAbierto()" [class.fa-times]="menuAbierto()"></i>
+    </button>
+
+    <ul class="nav-links" [class.open]="menuAbierto()">
+      @for (e of enlaces; track e.ruta) {
+        <li>
+          <a [routerLink]="e.ruta" routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: e.exacto }"
+             [class.nav-fav-btn]="e.ruta === '/favoritos'" (click)="cerrarMenu()">
+            <i class="fas {{ e.icono }}"></i> {{ e.texto }}
+            @if (e.ruta === '/favoritos' && totalFavoritos() > 0) {
+              <span class="fav-count">{{ totalFavoritos() }}</span>
+            }
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <!-- Ticker de titulares -->
+  <div class="ticker-bar" aria-label="Titulares en movimiento">
+    <div class="container ticker-wrap">
+      <span class="ticker-label">Últimas noticias</span>
+      <div class="ticker-viewport">
+        <div class="ticker-track">
+          @for (t of titulares(); track $index) {
+            <span class="ticker-item">{{ t }}</span>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

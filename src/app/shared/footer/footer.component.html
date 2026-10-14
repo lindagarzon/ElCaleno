@@ -1,0 +1,58 @@
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="navbar-brand" style="margin-bottom:6px">
+            <div class="brand-logo">EC</div>
+            <div class="brand-text">
+              <span class="brand-name">El <span>Caleño</span></span>
+              <span class="brand-slogan">Noticias del Valle del Cauca</span>
+            </div>
+          </div>
+          <p>Tu periódico digital de confianza para mantenerte informado sobre tecnología, turismo, educación y comercio en Cali y el Valle del Cauca.</p>
+          <div class="footer-social" aria-label="Redes sociales">
+            @for (r of redes; track r.nombre) {
+              <a href="#" class="social-btn" [attr.aria-label]="r.nombre" (click)="$event.preventDefault()">
+                <i class="fab {{ r.icono }}"></i>
+              </a>
+            }
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Secciones</h4>
+          <ul>
+            @for (s of secciones; track s.ruta) {
+              <li><a [routerLink]="s.ruta"><i class="fas fa-chevron-right"></i> {{ s.texto }}</a></li>
+            }
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Categorías</h4>
+          <ul>
+            @for (c of categorias; track c.nombre) {
+              <li><a routerLink="/noticias" [queryParams]="{ cat: c.nombre }">
+                <i class="fas {{ c.icono }}"></i> {{ c.nombre }}</a></li>
+            }
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>Calle 10 # 4-47, Centro, Cali</span></div>
+          <div class="footer-contact-item"><i class="fas fa-phone"></i><span>+57 (602) 880-5000</span></div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>redaccion&#64;elcaleno.co</span></div>
+          <div class="footer-contact-item"><i class="fas fa-clock"></i><span>Lun – Vie: 8:00 am – 6:00 pm</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© {{ anio }} El Caleño. Todos los derechos reservados.</span>
+      <span>Hecho con <i class="fas fa-heart" style="color:var(--rojo)"></i> en Cali, Colombia · Angular</span>
+    </div>
+  </div>
+</footer>

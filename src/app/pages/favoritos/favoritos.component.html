@@ -1,0 +1,57 @@
+<section class="page-hero" aria-label="Encabezado de favoritos">
+  <div class="container page-hero-content">
+    <nav class="breadcrumb" aria-label="Miga de pan">
+      <a routerLink="/"><i class="fas fa-home"></i> Inicio</a><span>/</span><span>Mis Favoritos</span>
+    </nav>
+    <h1><i class="fas fa-heart" style="color:var(--dorado)"></i> Mis favoritos</h1>
+    <p>Las noticias que guardaste para leer después — almacenadas en tu dispositivo.</p>
+  </div>
+</section>
+
+<div class="fav-toolbar">
+  <div class="container fav-toolbar-inner">
+    <span><i class="fas fa-heart" style="color:var(--rojo)"></i> <strong>{{ favoritas().length }}</strong> noticia(s) guardada(s)</span>
+    <div style="display:flex;gap:10px">
+      <a routerLink="/noticias" class="btn btn-ghost btn-sm"><i class="fas fa-plus"></i> Agregar más noticias</a>
+      <button class="btn btn-danger-soft btn-sm" [disabled]="!favoritas().length" (click)="limpiarTodo()">
+        <i class="fas fa-trash"></i> Limpiar todo</button>
+    </div>
+  </div>
+</div>
+
+<section class="section" aria-label="Lista de favoritos">
+  <div class="container">
+    @if (cargando()) {
+      <div class="cards-grid">@for (i of [1,2,3]; track i) { <div class="skeleton" style="height:380px"></div> }</div>
+    } @else if (favoritas().length) {
+      <div class="cards-grid">
+        @for (n of favoritas(); track n.id) { <app-news-card [noticia]="n" /> }
+      </div>
+    } @else {
+      <div class="empty-state">
+        <i class="far fa-heart"></i>
+        <h3>Aún no tienes favoritos</h3>
+        <p>Toca el corazón en cualquier noticia para guardarla aquí.</p>
+        <a routerLink="/noticias" class="btn btn-primary"><i class="fas fa-newspaper"></i> Explorar noticias</a>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="section section-alt" aria-label="Sugerencias">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">💡 Te puede interesar</span>
+      <h2 class="section-title">Explora más categorías</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="cat-suggest-grid">
+      @for (c of categorias; track c.nombre) {
+        <a class="info-card" routerLink="/noticias" [queryParams]="{ cat: c.nombre }">
+          <div class="info-icon"><i class="fas {{ c.icono }}"></i></div>
+          <div><h4>{{ c.nombre }}</h4><p>{{ descripciones[c.nombre] }}</p></div>
+        </a>
+      }
+    </div>
+  </div>
+</section>

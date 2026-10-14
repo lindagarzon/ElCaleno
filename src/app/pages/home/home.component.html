@@ -1,0 +1,146 @@
+<!-- ===== Sección de bienvenida (hero) ===== -->
+<section class="hero" aria-label="Sección principal">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="hero-tag">📰 Tu periódico digital</span>
+        <h1>La voz del <span>Valle del Cauca</span> en un solo lugar</h1>
+        <p>Tecnología, turismo, educación y comercio. Cada día traemos las noticias más relevantes de Cali y el suroccidente colombiano, contadas por periodistas locales.</p>
+        <div class="hero-actions">
+          <a routerLink="/noticias" class="btn btn-primary btn-lg"><i class="fas fa-newspaper"></i> Explorar noticias</a>
+          <a routerLink="/favoritos" class="btn btn-outline btn-lg"><i class="fas fa-heart"></i> Mis favoritos</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        @for (s of stats(); track s.label) {
+          <div class="stat-card">
+            <span class="stat-num">{{ s.num }}</span>
+            <span class="stat-label">{{ s.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Noticias destacadas ===== -->
+<section class="featured-section" aria-label="Noticias destacadas">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">🔥 Destacadas</span>
+      <h2 class="section-title">Las noticias del momento</h2>
+      <div class="divider"></div>
+    </div>
+
+    @if (cargando()) {
+      <div class="featured-main">
+        <div class="skeleton" style="height:420px;flex:2"></div>
+        <div class="featured-side"><div class="skeleton" style="height:200px"></div><div class="skeleton" style="height:200px"></div></div>
+      </div>
+    } @else if (destacadas().length) {
+      <div class="featured-main">
+        @let principal = destacadas()[0];
+        <a class="featured-big" [routerLink]="['/noticia', principal.id]">
+          <img [src]="principal.imagenDetalle || principal.imagen" [alt]="principal.titulo" (error)="respaldo($event, principal)" />
+          <span class="card-categoria" [class]="claseCat(principal.categoria)">{{ principal.categoria }}</span>
+          <div class="featured-overlay">
+            <h3>{{ principal.titulo }}</h3>
+            <p>{{ principal.descripcion }}</p>
+            <span class="btn btn-primary btn-sm">Leer noticia <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+        <div class="featured-side">
+          @for (n of destacadas().slice(1); track n.id) {
+            <a class="featured-small" [routerLink]="['/noticia', n.id]">
+              <img [src]="n.imagen" [alt]="n.titulo" (error)="respaldo($event, n)" />
+              <div class="featured-overlay">
+                <span class="card-categoria static" [class]="claseCat(n.categoria)">{{ n.categoria }}</span>
+                <h4>{{ n.titulo }}</h4>
+              </div>
+            </a>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ===== Últimas noticias con filtro por categoría ===== -->
+<section class="section section-alt" aria-label="Últimas noticias">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">📰 Recientes</span>
+      <h2 class="section-title">Últimas noticias</h2>
+      <p class="section-desc">Mantente informado con lo más reciente de Cali y el Valle del Cauca</p>
+      <div class="divider"></div>
+    </div>
+
+    <div class="categories-row" role="group" aria-label="Filtros de categoría">
+      <button class="cat-pill" [class.active]="categoriaActiva() === ''" (click)="seleccionarCategoria('')">
+        <i class="fas fa-globe"></i> Todas</button>
+      @for (c of categorias; track c.nombre) {
+        <button class="cat-pill" [class.active]="categoriaActiva() === c.nombre" (click)="seleccionarCategoria(c.nombre)">
+          <i class="fas {{ c.icono }}"></i> {{ c.nombre }}</button>
+      }
+    </div>
+
+    <div class="cards-grid">
+      @if (cargando()) {
+        @for (i of [1,2,3]; track i) { <div class="skeleton" style="height:380px"></div> }
+      } @else {
+        @for (n of ultimas(); track n.id) {
+          <app-news-card [noticia]="n" />
+        } @empty {
+          <p class="empty-inline">No hay noticias en esta categoría todavía.</p>
+        }
+      }
+    </div>
+
+    <div style="text-align:center;margin-top:40px">
+      <a routerLink="/noticias" class="btn btn-primary btn-lg">Ver todas las noticias <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Testimonios ===== -->
+<section class="section" aria-label="Lo que dicen nuestros lectores">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">💬 Lectores</span>
+      <h2 class="section-title">Lo que dice nuestra comunidad</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="testimonios-grid">
+      @for (t of testimonios; track t.nombre) {
+        <article class="testimonio-card">
+          <div class="testimonio-stars">
+            @for (e of [1,2,3,4,5]; track e) {
+              <i class="fa-star" [class.fas]="e <= t.estrellas" [class.far]="e > t.estrellas"></i>
+            }
+          </div>
+          <p class="testimonio-texto">"{{ t.texto }}"</p>
+          <div class="testimonio-autor">
+            <div class="testimonio-avatar">{{ t.ini }}</div>
+            <div>
+              <div class="testimonio-nombre">{{ t.nombre }}</div>
+              <div class="testimonio-cargo">{{ t.cargo }}</div>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== Llamado a la acción ===== -->
+<section class="cta-section" aria-label="Llamado a la acción">
+  <div class="container">
+    <h2>¿Tienes una historia que contar?</h2>
+    <p>Comparte noticias, eventos y experiencias del Valle del Cauca con nuestra comunidad de lectores.</p>
+    <div class="cta-actions">
+      <a routerLink="/redaccion" class="btn btn-gold btn-lg"><i class="fas fa-edit"></i> Publicar noticia</a>
+      <a routerLink="/contacto" class="btn btn-outline btn-lg"><i class="fas fa-envelope"></i> Contáctanos</a>
+      <a routerLink="/noticias" class="btn btn-outline btn-lg"><i class="fas fa-search"></i> Explorar más</a>
+    </div>
+  </div>
+</section>

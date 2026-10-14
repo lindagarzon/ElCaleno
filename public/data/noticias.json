@@ -1,0 +1,208 @@
+[
+  {
+    "id": 1,
+    "categoria": "Tecnología",
+    "titulo": "Cali se convierte en polo tecnológico de Colombia",
+    "descripcion": "La ciudad lidera la transformación digital en el suroccidente con la apertura de nuevos hubs de innovación y startups.",
+    "contenido": "Cali está viviendo una transformación tecnológica sin precedentes. Durante el último año abrieron más de 15 centros de innovación, y la ciudad se consolida como el segundo ecosistema de startups más activo del país.\n\nEl proyecto Cali Tech Valley ha atraído inversiones superiores a los 50 millones de dólares y ha generado más de 2.000 empleos directos en desarrollo de software, ciencia de datos y servicios digitales.\n\nSegún la Cámara de Comercio de Cali, la meta para 2028 es duplicar el número de empresas de base tecnológica, apoyándose en alianzas con universidades de la región y programas de formación para jóvenes.",
+    "imagen": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop",
+    "autor": "Carlos Arbeláez",
+    "fecha": "2026-09-25",
+    "destacada": true,
+    "tags": [
+      "tecnología",
+      "innovación",
+      "Cali",
+      "startups"
+    ]
+  },
+  {
+    "id": 2,
+    "categoria": "Turismo",
+    "titulo": "Feria de Cali 2026: todo lo que necesitas saber",
+    "descripcion": "La Feria de las Flores de la salsa vuelve con más fuerza que nunca: fechas, desfiles, conciertos y recomendaciones.",
+    "contenido": "La edición 2026 de la Feria de Cali se celebrará del 25 al 30 de diciembre con una programación que incluye el Salsódromo, el Desfile de Autos Clásicos, el Encuentro de Melómanos y conciertos en distintos escenarios de la ciudad.\n\nLa Alcaldía espera la llegada de más de 300.000 visitantes nacionales e internacionales, lo que representaría un récord para el sector hotelero y gastronómico.\n\nSe recomienda adquirir las boletas con anticipación por los canales oficiales y usar el transporte masivo MIO, que ampliará sus horarios durante la semana de feria.",
+    "imagen": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1200&auto=format&fit=crop",
+    "autor": "María Fernanda Lozano",
+    "fecha": "2026-09-22",
+    "destacada": true,
+    "tags": [
+      "feria",
+      "salsa",
+      "turismo",
+      "cultura"
+    ]
+  },
+  {
+    "id": 3,
+    "categoria": "Educación",
+    "titulo": "Univalle lanza programa de becas para jóvenes del Pacífico",
+    "descripcion": "Más de 500 jóvenes del litoral Pacífico tendrán acceso a educación universitaria gratuita a partir de 2027.",
+    "contenido": "La Universidad del Valle anunció el programa Pacífico Avanza, que otorgará 500 becas completas a bachilleres de Buenaventura, Tumaco, Guapi y otros municipios del litoral.\n\nLas becas cubren matrícula, alimentación y un auxilio de sostenimiento mensual. Las carreras priorizadas son ingenierías, ciencias de la salud y licenciaturas.\n\nLas inscripciones estarán abiertas hasta el 30 de noviembre a través del portal de admisiones de la universidad.",
+    "imagen": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&auto=format&fit=crop",
+    "autor": "Andrés Mosquera",
+    "fecha": "2026-09-20",
+    "destacada": true,
+    "tags": [
+      "becas",
+      "Univalle",
+      "Pacífico",
+      "educación"
+    ]
+  },
+  {
+    "id": 4,
+    "categoria": "Comercio",
+    "titulo": "Exportaciones del Valle crecen un 28 % en el último año",
+    "descripcion": "El azúcar, los productos de confitería y el software lideran el aumento de las ventas del departamento al exterior.",
+    "contenido": "Las exportaciones del Valle del Cauca crecieron un 28 % frente al mismo periodo del año anterior, impulsadas por la agroindustria, la confitería y los servicios de tecnología.\n\nEstados Unidos, Ecuador y Perú se mantienen como los principales destinos, aunque crece la participación de mercados asiáticos.\n\nEl puerto de Buenaventura movilizó el 45 % de la carga de exportación del país durante el semestre, consolidándose como pieza clave del comercio exterior colombiano.",
+    "imagen": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop",
+    "autor": "Juliana Caicedo",
+    "fecha": "2026-09-18",
+    "destacada": false,
+    "tags": [
+      "exportaciones",
+      "economía",
+      "Valle"
+    ]
+  },
+  {
+    "id": 5,
+    "categoria": "Comercio",
+    "titulo": "Nuevo centro comercial abre sus puertas en el norte de Cali",
+    "descripcion": "El complejo contará con 180 locales, zona gastronómica y un parque infantil, y generará cerca de 1.200 empleos.",
+    "contenido": "El norte de Cali estrenará un centro comercial de 180 locales con marcas nacionales e internacionales, una plazoleta de comidas con 40 restaurantes y salas de cine.\n\nLos promotores informaron que el 60 % de los empleos generados se destinarán a habitantes de las comunas cercanas.\n\nLa apertura oficial está prevista para la primera semana de noviembre, con actividades culturales y descuentos especiales.",
+    "imagen": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&auto=format&fit=crop",
+    "autor": "Juliana Caicedo",
+    "fecha": "2026-09-16",
+    "destacada": false,
+    "tags": [
+      "comercio",
+      "empleo",
+      "Cali"
+    ]
+  },
+  {
+    "id": 6,
+    "categoria": "Tecnología",
+    "titulo": "Semáforos inteligentes reducen los trancones en Cali",
+    "descripcion": "El sistema con inteligencia artificial ajusta los tiempos según el flujo vehicular y ya opera en 40 intersecciones.",
+    "contenido": "La Secretaría de Movilidad puso en funcionamiento un sistema de semáforos inteligentes que analiza en tiempo real el volumen de vehículos y ajusta automáticamente los ciclos de luz.\n\nEn las primeras semanas se registró una reducción del 18 % en los tiempos de desplazamiento en corredores como la Calle 5 y la Avenida Sexta.\n\nLa segunda fase del proyecto ampliará la cobertura a 120 intersecciones durante 2027.",
+    "imagen": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&auto=format&fit=crop",
+    "autor": "Diego Palacios",
+    "fecha": "2026-09-15",
+    "destacada": false,
+    "tags": [
+      "movilidad",
+      "IA",
+      "tecnología"
+    ]
+  },
+  {
+    "id": 7,
+    "categoria": "Turismo",
+    "titulo": "Los Farallones: joya ecoturística de Cali",
+    "descripcion": "El Parque Nacional Natural Farallones de Cali bate récord de visitantes con sus nuevos senderos regulados.",
+    "contenido": "El Parque Nacional Natural Farallones de Cali recibió más de 40.000 visitantes en el último semestre gracias a la habilitación de senderos ecoturísticos con guías certificados.\n\nLos recorridos más solicitados son Pico de Loro, Quebrada Honda y el Alto del Buey. Las autoridades recuerdan que el ingreso debe reservarse con anticipación.\n\nEl turismo de naturaleza se ha convertido en una fuente de ingresos para las familias campesinas de Pance y Los Andes.",
+    "imagen": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&auto=format&fit=crop",
+    "autor": "Valentina Ortiz",
+    "fecha": "2026-09-12",
+    "destacada": false,
+    "tags": [
+      "ecoturismo",
+      "Farallones",
+      "naturaleza"
+    ]
+  },
+  {
+    "id": 8,
+    "categoria": "Educación",
+    "titulo": "Colegios de Cali enseñan robótica desde primaria",
+    "descripcion": "Un programa de la Secretaría de Educación lleva kits de robótica y programación a 60 instituciones públicas.",
+    "contenido": "Más de 15.000 estudiantes de primaria de colegios oficiales aprenden robótica y pensamiento computacional gracias al programa Cali Programa.\n\nLos docentes recibieron formación durante seis meses y cada institución cuenta con un laboratorio dotado de kits, computadores y conexión a internet.\n\nEn noviembre se realizará la primera Olimpiada Distrital de Robótica Escolar.",
+    "imagen": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&auto=format&fit=crop",
+    "autor": "Carolina Restrepo",
+    "fecha": "2026-09-10",
+    "destacada": false,
+    "tags": [
+      "robótica",
+      "colegios",
+      "educación"
+    ]
+  },
+  {
+    "id": 9,
+    "categoria": "Tecnología",
+    "titulo": "Startups caleñas ganan reconocimiento en Latinoamérica",
+    "descripcion": "Tres emprendimientos de la ciudad fueron seleccionados en una aceleradora regional de alto impacto.",
+    "contenido": "Tres startups de Cali, dedicadas a la agrotecnología, la salud digital y las finanzas, fueron elegidas entre más de 2.000 postulaciones en una de las aceleradoras más importantes de la región.\n\nLos equipos recibirán mentoría, acceso a inversionistas y capital semilla durante seis meses.\n\nEste logro confirma el crecimiento del ecosistema emprendedor del suroccidente colombiano.",
+    "imagen": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop",
+    "autor": "Carlos Arbeláez",
+    "fecha": "2026-09-08",
+    "destacada": false,
+    "tags": [
+      "startups",
+      "emprendimiento"
+    ]
+  },
+  {
+    "id": 10,
+    "categoria": "Turismo",
+    "titulo": "San Antonio, el barrio que enamora a los turistas",
+    "descripcion": "Arte, gastronomía y miradores convierten al tradicional barrio en uno de los destinos favoritos de Cali.",
+    "contenido": "El barrio San Antonio conserva su arquitectura colonial y se ha transformado en un circuito de cafés, galerías y restaurantes.\n\nLos fines de semana, la Colina de San Antonio reúne a cuenteros, músicos y vendedores de artesanías, con una de las mejores vistas de la ciudad al atardecer.\n\nLa Secretaría de Turismo prepara una ruta guiada gratuita para visitantes.",
+    "imagen": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&auto=format&fit=crop",
+    "autor": "Valentina Ortiz",
+    "fecha": "2026-09-05",
+    "destacada": false,
+    "tags": [
+      "San Antonio",
+      "cultura",
+      "turismo"
+    ]
+  },
+  {
+    "id": 11,
+    "categoria": "Educación",
+    "titulo": "Bibliotecas públicas amplían horarios y servicios digitales",
+    "descripcion": "La Red de Bibliotecas de Cali abrirá hasta las 8:00 p. m. y prestará libros electrónicos sin costo.",
+    "contenido": "La Red de Bibliotecas Públicas de Cali amplió su horario de atención y lanzó una plataforma de préstamo de libros electrónicos y audiolibros.\n\nAdemás, se ofrecerán talleres gratuitos de alfabetización digital para adultos mayores y clubes de lectura para niños.\n\nPara acceder al servicio basta con registrarse con el documento de identidad en cualquiera de las 60 sedes.",
+    "imagen": "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&auto=format&fit=crop",
+    "autor": "Carolina Restrepo",
+    "fecha": "2026-09-03",
+    "destacada": false,
+    "tags": [
+      "bibliotecas",
+      "lectura",
+      "educación"
+    ]
+  },
+  {
+    "id": 12,
+    "categoria": "Comercio",
+    "titulo": "Emprendedores del Pacífico llegan a las vitrinas de Cali",
+    "descripcion": "Una feria reúne a 80 marcas de moda, gastronomía y artesanías del litoral en el centro de la ciudad.",
+    "contenido": "Durante cuatro días, 80 emprendimientos del Pacífico colombiano exhiben sus productos en una feria comercial con entrada libre.\n\nLa iniciativa busca conectar a los productores con compradores mayoristas y abrir canales de venta en línea.\n\nLos organizadores esperan negocios por más de 2.000 millones de pesos.",
+    "imagen": "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&auto=format&fit=crop",
+    "imagenDetalle": "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=1200&auto=format&fit=crop",
+    "autor": "Andrés Mosquera",
+    "fecha": "2026-09-01",
+    "destacada": false,
+    "tags": [
+      "emprendimiento",
+      "Pacífico",
+      "comercio"
+    ]
+  }
+]

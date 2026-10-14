@@ -1,0 +1,87 @@
+<section class="page-hero" aria-label="Encabezado">
+  <div class="container page-hero-content">
+    <nav class="breadcrumb" aria-label="Miga de pan">
+      <a routerLink="/"><i class="fas fa-home"></i> Inicio</a><span>/</span>
+      <a routerLink="/noticias">Noticias</a><span>/</span>
+      <span>{{ noticia()?.titulo ?? 'Detalle' }}</span>
+    </nav>
+    <h1><i class="fas fa-file-alt" style="color:var(--dorado)"></i> Detalle de noticia</h1>
+    <p>Lee la información completa e interactúa con esta noticia</p>
+  </div>
+</section>
+
+<main class="container">
+  <div class="detalle-layout">
+    <article aria-label="Contenido de la noticia">
+      @if (cargando()) {
+        <div class="skeleton" style="height:420px;margin-bottom:28px"></div>
+        <div class="skeleton" style="height:32px;margin-bottom:12px"></div>
+        <div class="skeleton" style="height:18px;width:80%"></div>
+      } @else {
+      @if (noticia(); as n) {
+        <span class="card-categoria static" [class]="catClass()">{{ n.categoria }}</span>
+        <div class="detalle-meta">
+          <span><i class="fas fa-calendar-alt"></i> {{ n.fecha | fechaLarga }}</span>
+          <span><i class="fas fa-user-edit"></i> {{ n.autor }}</span>
+        </div>
+        <h2 class="detalle-titulo">{{ n.titulo }}</h2>
+        <blockquote class="detalle-desc">{{ n.descripcion }}</blockquote>
+        <img class="detalle-img" [src]="n.imagenDetalle || n.imagen" [alt]="n.titulo" (error)="respaldo($event, n.categoria)" />
+        <div class="detalle-contenido">
+          @for (p of parrafos(); track $index) { <p>{{ p }}</p> }
+        </div>
+        <div class="detalle-tags">
+          @for (t of n.tags; track t) { <span class="tag">#{{ t }}</span> }
+        </div>
+        <div class="detalle-acciones">
+          <button class="btn" [class.btn-primary]="!esFavorito()" [class.btn-fav-activo]="esFavorito()" (click)="toggleFavorito()">
+            <i class="fa-heart" [class.fas]="true"></i>
+            {{ esFavorito() ? 'En favoritos — quitar' : 'Agregar a favoritos' }}
+          </button>
+          <button class="btn btn-ghost" (click)="volver()"><i class="fas fa-arrow-left"></i> Volver</button>
+          <button class="btn btn-ghost" (click)="compartir()"><i class="fas fa-share-alt"></i> Compartir</button>
+          <a routerLink="/contacto" class="btn btn-ghost"><i class="fas fa-envelope"></i> Contactar a la redacción</a>
+        </div>
+      } @else {
+        <div class="empty-state">
+          <i class="fas fa-exclamation-circle"></i>
+          <h3>Noticia no encontrada</h3>
+          <p>Es posible que haya sido eliminada desde el panel de Redacción.</p>
+          <a routerLink="/noticias" class="btn btn-primary">Ver todas las noticias</a>
+        </div>
+      }
+      }
+    </article>
+
+    <aside aria-label="Barra lateral">
+      <div class="sidebar-card">
+        <h3><i class="fas fa-fire" style="color:var(--rojo)"></i> Otras noticias</h3>
+        @for (o of otras(); track o.id) {
+          <a class="sidebar-item" [routerLink]="['/noticia', o.id]">
+            <img [src]="o.imagen" [alt]="o.titulo" (error)="respaldo($event, o.categoria)" />
+            <div><strong>{{ o.titulo }}</strong><small>{{ o.fecha | fechaLarga }}</small></div>
+          </a>
+        }
+      </div>
+
+      <div class="sidebar-card">
+        <h3><i class="fas fa-share-alt" style="color:var(--rojo)"></i> Compartir</h3>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-ghost btn-sm" (click)="compartirRed('facebook')"><i class="fab fa-facebook-f"></i> Facebook</button>
+          <button class="btn btn-ghost btn-sm" (click)="compartirRed('twitter')"><i class="fab fa-x-twitter"></i> X</button>
+          <button class="btn btn-ghost btn-sm" (click)="compartirRed('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+          <button class="btn btn-ghost btn-sm" (click)="copiarEnlace()"><i class="fas fa-link"></i> Copiar</button>
+        </div>
+      </div>
+
+      <div class="sidebar-card sidebar-dark">
+        <h3><i class="fas fa-envelope" style="color:var(--dorado)"></i> Newsletter</h3>
+        <p>Recibe las noticias más importantes directo en tu correo.</p>
+        <input type="email" class="form-control" placeholder="tu@correo.com" aria-label="Correo para newsletter"
+               [ngModel]="emailNewsletter()" (ngModelChange)="emailNewsletter.set($event)" (keyup.enter)="suscribirNewsletter()" />
+        <button class="btn btn-gold btn-sm" style="margin-top:10px;width:100%" (click)="suscribirNewsletter()">
+          <i class="fas fa-paper-plane"></i> Suscribirme</button>
+      </div>
+    </aside>
+  </div>
+</main>
